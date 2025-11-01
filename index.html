@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>BLOOM COLLEGE - Student Registration</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="css/style.css"/> 
+
+    <style>
+        .profile-preview {
+            width: 120px; 
+            height: 120px; 
+            object-fit: cover;
+            border: 1px solid #ddd;
+            border-radius: 4px; 
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="text-center py-4">
+        <h1>BLOOM COLLEGE</h1>
+        <p>Student Registration Form</p>
+    </header>
+
+    <div class="container my-4 p-4 form-container">
+        
+        <form id="registerForm">
+            
+            <div class="form-group row mb-4 align-items-center">
+                <label for="studentImage" class="col-sm-3 col-form-label text-end">Student Image:</label>
+                
+                <div class="col-sm-9 d-flex flex-column align-items-start">
+                    
+                    <div class="text-center mt-3 image-wrapper">
+                        <img 
+                            id="profilePreview" 
+                            src="#" 
+                            alt="Image Preview" 
+                            class="img-thumbnail profile-preview" 
+                            style="display: none;"
+                        />
+                    </div>
+                    
+                    <input type="file" class="form-control-file mt-2" id="studentImage" name="student_image" accept="image/*" onchange="previewProfileImage(event)">
+                    
+                    <small class="text-muted">(less than 5 Mb)</small>
+                </div>
+            </div>
+            <hr class="mt-0">
+
+            <div class="form-group row">
+                <label for="studentName" class="col-sm-3 col-form-label text-end">Student Name:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="studentName" name="student_name" placeholder="Enter full name" onchange="toCapsLock(this)" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="fathersName" class="col-sm-3 col-form-label text-end">Father's Name:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="fathersName" name="father_name" placeholder="Enter father's name" onchange="toCapsLock(this)" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="mothersName" class="col-sm-3 col-form-label text-end">Mother's Name:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="mothersName" name="mother_name" placeholder="Enter mother's name" onchange="toCapsLock(this)" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-end">Gender:</label>
+                <div class="col-sm-9 pt-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-end">Date of Birth:</label>
+                <div class="col-sm-9">
+                    <div class="d-flex gap-2">
+                        <select class="form-control" style="width:33%" name="dob_day" required>
+                            <option value="">DD</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option>
+                        </select>
+                        <select class="form-control" style="width:33%" name="dob_month" required>
+                            <option value="">MM</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+                        </select>
+                        <select class="form-control" style="width:33%" name="dob_year" required>
+                            <option value="">YYYY</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="email" class="col-sm-3 col-form-label text-end">E-mail:</label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" onfocus="handleFocus(this)" onblur="handleBlur(this)" required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="level" class="col-sm-3 col-form-label text-end">Level:</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="level" name="level" required>
+                        <option value="">Select Level</option>
+                        <option>Phd</option>
+                        <option>Diploma</option>
+                        <option>Degree</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="dept" class="col-sm-3 col-form-label text-end">Department:</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="dept" name="department" required>
+                        <option value="">Select Department</option>
+                        <option>Computer Engineering</option>
+                        <option>IT</option>
+                        <option>Business</option>
+                        <option>Engineering</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="mobile" class="col-sm-3 col-form-label text-end">Tel / Mobile:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="mobile" name="mobile_number" placeholder="Enter phone number" required>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <h4 class="text-center mb-4">Address</h4>
+
+            <div class="form-group row">
+                <label for="address" class="col-sm-3 col-form-label text-end">Address:</label>
+                <div class="col-sm-9">
+                  <textarea class="form-control" id="address" name="address" rows="2" placeholder="Enter full address" required></textarea>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="state" class="col-sm-3 col-form-label text-end">State:</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="state" name="state" required>
+                        <option value="">Select State</option>
+                        <option value="Johor">Johor</option><option value="Kedah">Kedah</option><option value="Kelantan">Kelantan</option>
+                        <option value="Melaka">Melaka</option><option value="Negeri Sembilan">Negeri Sembilan</option><option value="Pahang">Pahang</option>
+                        <option value="Perak">Perak</option><option value="Perlis">Perlis</option><option value="Penang">Penang</option>
+                        <option value="Sabah">Sabah</option><option value="Sarawak">Sarawak</option><option value="Selangor">Selangor</option>
+                        <option value="Terengganu">Terengganu</option><option value="W.P. Kuala Lumpur">W.P. Kuala Lumpur</option><option value="W.P. Labuan">W.P. Labuan</option>
+                        <option value="W.P. Putrajaya">W.P. Putrajaya</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="city" class="col-sm-3 col-form-label text-end">City:</label>
+                <div class="col-sm-9">
+                    <select class="form-control" id="city" name="city" required>
+                        <option value="">Select City</option>
+                        <option value="Alor Setar">Alor Setar</option><option value="Batu Pahat">Batu Pahat</option><option value="Bintulu">Bintulu</option>
+                        <option value="George Town">George Town</option><option value="Ipoh">Ipoh</option><option value="Johor Bahru">Johor Bahru</option>
+                        <option value="Kajang">Kajang</option><option value="Kangar">Kangar</option><option value="Klang">Klang</option>
+                        <option value="Kota Bharu">Kota Bharu</option><option value="Kota Kinabalu">Kota Kinabalu</option><option value="Kuala Lumpur">Kuala Lumpur</option>
+                        <option value="Kuala Terengganu">Kuala Terengganu</option><option value="Kuantan">Kuantan</option><option value="Kuching">Kuching</option>
+                        <option value="Melaka City">Melaka City</option><option value="Miri">Miri</option><option value="Muar">Muar</option>
+                        <option value="Petaling Jaya">Petaling Jaya</option><option value="Putrajaya">Putrajaya</option><option value="Seremban">Seremban</option>
+                        <option value="Shah Alam">Shah Alam</option><option value="Sibu">Sibu</option><option value="Subang Jaya">Subang Jaya</option>
+                        <option value="Sungai Petani">Sungai Petani</option><option value="Taiping">Taiping</option><option value="Tawau">Tawau</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="postcode" class="col-sm-3 col-form-label text-end">Postcode:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Enter postcode" required>
+                </div>
+            </div>
+
+            <div class="row pt-3">
+                <div class="col-sm-9 offset-sm-3 text-center">
+                    <button type="submit" class="btn btn-primary px-4 mr-2">Register</button>
+                    <button type="reset" class="btn btn-secondary px-4">Reset</button>
+                </div>
+            </div>
+            
+        </form>
+
+    </div> 
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-7VlH0x2WlF8LwA9J3n2N4o4QY4Vz5vT6+Qx8A6jXh7t5U6jK4+qK3w2m7wA6+5S6zT5" crossorigin="anonymous"></script>
+
+    <script>
+
+        function previewProfileImage(event) {
+            const reader = new FileReader();
+            const imagePreview = document.getElementById('profilePreview'); 
+
+            if (event.target.files && event.target.files.length > 0) {
+                reader.onload = function() {
+                    if (reader.readyState === 2) {
+                        imagePreview.src = reader.result;
+                        imagePreview.style.display = 'block';
+                    }
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            } else {
+                imagePreview.style.display = 'none';
+                imagePreview.src = '#';
+            }
+        }
+
+        function toCapsLock(element) {
+            element.value = element.value.toUpperCase();
+        }
+
+        function handleFocus(element) {
+            element.style.backgroundColor = '#fff3cd';
+            element.placeholder = 'Type email here...';
+        }
+
+        function handleBlur(element) {
+            element.style.backgroundColor = ''; 
+            element.placeholder = 'Enter email';
+            
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (element.value !== "" && !emailPattern.test(element.value)) {
+                // Validation feedback can be added here
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registerForm');
+            
+            form.addEventListener('submit', function(event) {
+                // Prevent the form from submitting normally
+                event.preventDefault(); 
+                
+                this.classList.add('was-validated');
+
+                // Check if all required fields are valid
+                if (this.checkValidity()) {
+                    
+                    
+                    alert("Your details have been saved!");
+                    
+                  
+                    this.reset();
+                    document.getElementById('profilePreview').style.display = 'none';
+                    this.classList.remove('was-validated'); 
+                }
+            });
+        });
+    </script> 
+
+</body>
+</html>
